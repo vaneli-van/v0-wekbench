@@ -25,11 +25,11 @@ export function FxRatesCard() {
   })
 
   return (
-    <section className="rounded-3xl border border-border bg-card p-5">
+    <section className="rounded-lg border border-border bg-card p-4">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <TrendingUp className="size-5" />
+          <div className="flex size-8 items-center justify-center rounded-md bg-primary/10 text-primary">
+            <TrendingUp className="size-4" />
           </div>
           <div>
             <h2 className="text-sm font-semibold text-foreground">FX Rates — Ghana Cedi</h2>
@@ -38,7 +38,7 @@ export function FxRatesCard() {
         </div>
         <button
           onClick={() => mutate()}
-          className="flex size-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+          className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
           aria-label="Refresh rates"
         >
           <RefreshCw className={cn("size-4", isValidating && "animate-spin")} />

@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation"
 import {
   Bell,
   Menu,
-  MessageSquare,
-  Cloud,
   LayoutDashboard,
   Inbox,
   AtSign,
@@ -19,7 +17,6 @@ import {
   BarChart3,
   Plug,
   Settings,
-  Sparkles,
   Search as SearchIcon,
 } from "lucide-react"
 
@@ -71,7 +68,7 @@ function IconButton({
   return (
     <button
       type="button"
-      className="relative flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+      className="relative flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
     >
       {children}
       {badge ? (
@@ -97,27 +94,27 @@ export function Topbar() {
         : "ToolBox")
 
   return (
-    <header className="sticky top-0 z-30 flex h-20 items-center gap-3 bg-background/80 px-4 backdrop-blur md:px-8">
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur md:px-8">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="md:hidden rounded-full">
+          <Button variant="ghost" size="icon" className="md:hidden rounded-md">
             <Menu className="size-5" />
             <span className="sr-only">Open navigation</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-72 bg-sidebar text-sidebar-foreground border-sidebar-border p-0">
+        <SheetContent side="left" className="w-64 bg-sidebar text-sidebar-foreground border-sidebar-border p-0">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
-          <div className="flex items-center gap-3 px-5 h-20">
-            <div className="flex size-11 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white">
-              <Sparkles className="size-5" />
+          <div className="flex items-center gap-2.5 px-4 h-14 border-b border-sidebar-border">
+            <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-bold">
+              T
             </div>
             <div className="leading-tight">
-              <p className="text-base font-bold text-sidebar-accent-foreground">ToolBox</p>
-              <p className="text-xs text-sidebar-foreground/70">by Western Premium</p>
+              <p className="text-sm font-semibold text-sidebar-accent-foreground">ToolBox</p>
+              <p className="text-[11px] text-sidebar-foreground/70">by Western Premium</p>
             </div>
           </div>
-          <nav className="p-3">
-            <ul className="flex flex-col gap-1">
+          <nav className="p-2">
+            <ul className="flex flex-col gap-0.5">
               {mobileNav.map((item) => {
                 const active = isActive(item.href)
                 const Icon = item.icon
@@ -126,13 +123,13 @@ export function Topbar() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm",
+                        "flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm",
                         active
-                          ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
+                          ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
                           : "text-sidebar-foreground hover:bg-sidebar-accent/60",
                       )}
                     >
-                      <Icon className="size-5" />
+                      <Icon className="size-4" />
                       {item.name}
                     </Link>
                   </li>
@@ -143,19 +140,13 @@ export function Topbar() {
         </SheetContent>
       </Sheet>
 
-      <h1 className="text-xl font-bold tracking-tight text-foreground md:text-2xl">{title}</h1>
+      <h1 className="text-base font-semibold tracking-tight text-foreground md:text-lg">{title}</h1>
 
       <div className="ml-auto flex items-center gap-1">
-        <IconButton label="Cloud sync">
-          <Cloud className="size-5" />
-        </IconButton>
-        <IconButton label="Messages">
-          <MessageSquare className="size-5" />
-        </IconButton>
         <IconButton label="Notifications" badge={5}>
-          <Bell className="size-5" />
+          <Bell className="size-4.5" />
         </IconButton>
-        <div className="ml-1 flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-emerald-600 text-white text-sm font-semibold ring-2 ring-background">
+        <div className="ml-1 flex size-8 items-center justify-center rounded-md bg-secondary text-secondary-foreground text-xs font-semibold">
           SA
         </div>
       </div>

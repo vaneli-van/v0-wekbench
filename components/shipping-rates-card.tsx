@@ -10,10 +10,10 @@ const trendConf = {
 
 export function ShippingRatesCard() {
   return (
-    <section className="rounded-3xl border border-border bg-card p-5">
+    <section className="rounded-lg border border-border bg-card p-4">
       <div className="flex items-center gap-2.5">
-        <div className="flex size-9 items-center justify-center rounded-xl bg-accent/10 text-accent">
-          <Ship className="size-5" />
+        <div className="flex size-8 items-center justify-center rounded-md bg-accent/10 text-accent">
+          <Ship className="size-4" />
         </div>
         <div>
           <h2 className="text-sm font-semibold text-foreground">Shipping Line Rates</h2>
@@ -21,17 +21,17 @@ export function ShippingRatesCard() {
         </div>
       </div>
 
-      <ul className="mt-4 flex flex-col gap-2.5">
+      <ul className="mt-3 flex flex-col gap-1.5">
         {shippingRates.map((r) => {
           const Trend = trendConf[r.trend].icon
           const ModeIcon = r.mode === "Air" ? Plane : Ship
           return (
             <li
               key={r.id}
-              className="flex items-center gap-3 rounded-2xl border border-border bg-background/60 p-3"
+              className="flex items-center gap-3 rounded-md border border-border bg-background/60 p-2.5"
             >
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-muted-foreground">
-                <ModeIcon className="size-4.5" />
+              <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-secondary text-muted-foreground">
+                <ModeIcon className="size-4" />
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-foreground">{r.lane}</p>
