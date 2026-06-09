@@ -914,3 +914,75 @@ export const todaysPriorities = [
     href: "/rfq/RFQ-2026-0408",
   },
 ]
+
+// Indicative ocean/air freight line rates into Ghana. There is no free public
+// live freight-rate API, so these are curated indicative figures (USD).
+export type ShippingRate = {
+  id: string
+  lane: string
+  origin: string
+  mode: "Ocean FCL" | "Ocean LCL" | "Air"
+  unit: string
+  rate: number
+  transitDays: string
+  trend: "up" | "down" | "flat"
+  changePct: number
+}
+
+export const shippingRates: ShippingRate[] = [
+  {
+    id: "SR-1",
+    lane: "Shanghai → Tema",
+    origin: "CN",
+    mode: "Ocean FCL",
+    unit: "per 40' HC",
+    rate: 3450,
+    transitDays: "32–38 days",
+    trend: "up",
+    changePct: 4.2,
+  },
+  {
+    id: "SR-2",
+    lane: "Rotterdam → Tema",
+    origin: "NL",
+    mode: "Ocean FCL",
+    unit: "per 40' HC",
+    rate: 2180,
+    transitDays: "18–22 days",
+    trend: "down",
+    changePct: 2.1,
+  },
+  {
+    id: "SR-3",
+    lane: "Jebel Ali → Tema",
+    origin: "AE",
+    mode: "Ocean FCL",
+    unit: "per 40' HC",
+    rate: 2890,
+    transitDays: "26–30 days",
+    trend: "flat",
+    changePct: 0.3,
+  },
+  {
+    id: "SR-4",
+    lane: "Shanghai → Tema",
+    origin: "CN",
+    mode: "Ocean LCL",
+    unit: "per CBM",
+    rate: 96,
+    transitDays: "38–45 days",
+    trend: "up",
+    changePct: 1.8,
+  },
+  {
+    id: "SR-5",
+    lane: "Guangzhou → Accra (KIA)",
+    origin: "CN",
+    mode: "Air",
+    unit: "per kg",
+    rate: 6.4,
+    transitDays: "5–8 days",
+    trend: "down",
+    changePct: 3.5,
+  },
+]
