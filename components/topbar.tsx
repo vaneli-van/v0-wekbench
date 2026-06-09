@@ -146,9 +146,14 @@ export function Topbar() {
         <IconButton label="Notifications" badge={5}>
           <Bell className="size-4.5" />
         </IconButton>
-        <div className="ml-1 flex size-8 items-center justify-center rounded-md bg-secondary text-secondary-foreground text-xs font-semibold">
+        <Link
+          href="/signin"
+          className="ml-1 flex size-8 items-center justify-center rounded-md bg-secondary text-secondary-foreground text-xs font-semibold transition-colors hover:bg-secondary/80"
+          aria-label="Account and sign in"
+          title="Sign in screen"
+        >
           SA
-        </div>
+        </Link>
       </div>
     </header>
   )
