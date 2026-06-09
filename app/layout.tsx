@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { AppSidebar } from '@/components/app-sidebar'
+import { Topbar } from '@/components/topbar'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'ToolBox by Western Premium',
+  description:
+    'Vendor-first procurement workflow platform. Manage the full RFQ-to-Quote-to-Order workflow for enterprise buyers.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -35,10 +37,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <div className="flex h-screen overflow-hidden">
+          <AppSidebar />
+          <div className="flex flex-1 flex-col overflow-hidden">
+            <Topbar />
+            <main className="flex-1 overflow-y-auto bg-background">{children}</main>
+          </div>
+        </div>
       </body>
     </html>
   )
