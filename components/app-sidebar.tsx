@@ -30,7 +30,6 @@ const navGroups: {
     items: [
       { name: "Dashboard", href: "/", icon: LayoutDashboard },
       { name: "RFQ Inbox", href: "/inbox", icon: Inbox, badge: 3 },
-      { name: "Email Capture", href: "/email-capture", icon: AtSign },
       { name: "Quotes", href: "/quotes", icon: FileText, badge: 1 },
       { name: "Product Search", href: "/product-search", icon: Search },
       { name: "Catalog", href: "/catalog", icon: Library },
@@ -50,6 +49,7 @@ const navGroups: {
     label: "System",
     items: [
       { name: "Reports", href: "/reports", icon: BarChart3 },
+      { name: "Email Capture", href: "/email-capture", icon: AtSign },
       { name: "Integrations", href: "/integrations", icon: Plug },
       { name: "Settings", href: "/settings", icon: Settings },
     ],
