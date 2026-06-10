@@ -29,7 +29,7 @@ const navGroups: {
     label: "Workflow",
     items: [
       { name: "Dashboard", href: "/", icon: LayoutDashboard },
-      { name: "RFQ Inbox", href: "/inbox", icon: Inbox, badge: 3 },
+      { name: "In Toolbox", href: "/inbox", icon: Inbox, badge: 3 },
       { name: "Quotes", href: "/quotes", icon: FileText, badge: 1 },
       { name: "Product Search", href: "/product-search", icon: Search },
       { name: "Catalog", href: "/catalog", icon: Library },

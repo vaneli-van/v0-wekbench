@@ -26,7 +26,7 @@ import { Button } from "@/components/ui/button"
 
 const mobileNav = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "RFQ Inbox", href: "/inbox", icon: Inbox },
+  { name: "In Toolbox", href: "/inbox", icon: Inbox },
   { name: "Email Capture", href: "/email-capture", icon: AtSign },
   { name: "Quotes", href: "/quotes", icon: FileText },
   { name: "Product Search", href: "/product-search", icon: SearchIcon },
@@ -42,7 +42,7 @@ const mobileNav = [
 
 const titleMap: Record<string, string> = {
   "/": "Command Center",
-  "/inbox": "RFQ Inbox",
+  "/inbox": "In Toolbox",
   "/email-capture": "Email Capture",
   "/quotes": "Quotes",
   "/product-search": "Product Search",
