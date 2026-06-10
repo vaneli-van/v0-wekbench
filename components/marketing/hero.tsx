@@ -17,15 +17,15 @@ export function Hero() {
         <div className="flex flex-col items-start">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <Sparkles className="size-3.5" />
-            AI-powered RFQ response
+            End-to-end B2B procurement
           </span>
           <h1 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Respond to RFQs in seconds, not days.
           </h1>
           <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-muted-foreground">
-            ToolBox reads incoming requests for quote, extracts every line item, prices them against
-            your catalog and live FX, and drafts a branded quote — before your competitors have
-            opened the email.
+            ToolBox is your trusted procurement partner. Register as a vendor or buyer, raise a
+            request, and we run it end to end — sourcing from connected OEMs and distributors,
+            pricing instantly, and managing the purchase all the way to delivery.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="gap-1.5">

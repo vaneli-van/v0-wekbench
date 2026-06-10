@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const links = [
+  { name: "Platform", href: "#platform" },
   { name: "How it works", href: "#how-it-works" },
   { name: "Features", href: "#features" },
   { name: "Results", href: "#results" },
