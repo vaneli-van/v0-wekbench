@@ -167,7 +167,7 @@ export default function FoundationsPage() {
 
           {/* Badges */}
           <div className="grid gap-10 lg:grid-cols-2">
-            <Block title="Status Badge" description="Compact pills in neutral grayscale variants — differentiated by weight and fill rather than hue.">
+            <Block title="Status Badge" description="Five standardised variants with a consistent filled treatment — used for every RFQ, quote, order, invoice and supplier status.">
               <div className="flex flex-wrap gap-2">
                 <StatusBadge variant="neutral">Neutral</StatusBadge>
                 <StatusBadge variant="info">Info</StatusBadge>
