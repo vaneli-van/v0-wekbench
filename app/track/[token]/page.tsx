@@ -41,7 +41,6 @@ async function TrackingResolver({ params }: { params: Promise<{ token: string }>
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground">ToolBox</p>
-              <p className="text-xs text-muted-foreground">by Western Premium</p>
             </div>
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2.5 py-1 text-xs font-medium text-success">

@@ -110,7 +110,6 @@ export function Topbar() {
             </div>
             <div className="leading-tight">
               <p className="text-sm font-semibold text-sidebar-accent-foreground">ToolBox</p>
-              <p className="text-[11px] text-sidebar-foreground/70">by Western Premium</p>
             </div>
           </div>
           <nav className="p-2">
