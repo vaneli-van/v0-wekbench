@@ -51,7 +51,7 @@ import {
 
 /* ---------------- model ---------------- */
 
-const FX_RATE = 1580 // USD -> NGN
+  const FX_RATE = 1580 // USD -> GHS
 const FX_BUFFER = 0.03
 const EFFECTIVE_FX = FX_RATE * (1 + FX_BUFFER)
 const SHIPPING_USD_PER_UNIT = 48 // freight + clearing + local delivery
@@ -112,7 +112,7 @@ const initialLines: Line[] = [
   },
 ]
 
-const ngn = (n: number) => `₦${Math.round(n).toLocaleString()}`
+  const cedi = (n: number) => `GH₵${Math.round(n).toLocaleString()}`
 
 function computeLine(line: Line) {
   const itemCost = line.unitCostUSD * EFFECTIVE_FX
@@ -143,7 +143,7 @@ export function QuoteBuilder() {
   const [expanded, setExpanded] = useState<string | null>("L1")
   const [title, setTitle] = useState("25 x Dell Latitude Business Laptops — Branch Rollout")
   const [buyer, setBuyer] = useState("Meridian Bank Plc")
-  const [currency, setCurrency] = useState("NGN")
+  const [currency, setCurrency] = useState("GHS")
   const [validity, setValidity] = useState("21")
   const [paymentTerms, setPaymentTerms] = useState("50-50")
   const [incoterm, setIncoterm] = useState("DAP")
@@ -361,7 +361,7 @@ export function QuoteBuilder() {
                       {/* landed (read-only) */}
                       <Field label="Landed/unit" className="col-span-5 lg:col-span-2">
                         <div className="rounded-md bg-muted px-2 py-1.5 text-sm tabular-nums text-foreground">
-                          {ngn(c.landedPerUnit)}
+                          {cedi(c.landedPerUnit)}
                         </div>
                       </Field>
 
@@ -397,7 +397,7 @@ export function QuoteBuilder() {
                     {/* total + actions */}
                     <div className="flex flex-col items-end gap-2 pl-2">
                       <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Total</p>
-                      <p className="text-sm font-semibold tabular-nums text-foreground">{ngn(c.total)}</p>
+                      <p className="text-sm font-semibold tabular-nums text-foreground">{cedi(c.total)}</p>
                       <button
                         onClick={() => removeLine(line.id)}
                         className="text-muted-foreground hover:text-destructive"
@@ -421,7 +421,7 @@ export function QuoteBuilder() {
                   {isOpen && (
                     <div className="space-y-4 border-t border-border p-4">
                       <LandedCostBreakdown
-                        currency="₦"
+                        currency="GH₵"
                         segments={[
                           { label: "Item cost", amount: c.itemCost },
                           { label: "Shipping", amount: c.shipping },
@@ -514,19 +514,19 @@ export function QuoteBuilder() {
           <div className="space-y-4 lg:sticky lg:top-4">
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="space-y-1.5 text-sm">
-                <Row label="Subtotal" value={ngn(totals.subtotal)} />
-                <Row label="VAT (7.5%)" value={ngn(totals.vat)} />
+                <Row label="Subtotal" value={cedi(totals.subtotal)} />
+                <Row label="VAT (7.5%)" value={cedi(totals.vat)} />
                 <div className="my-2 h-px bg-border" />
                 <div className="flex items-baseline justify-between">
                   <span className="font-semibold text-foreground">Total</span>
-                  <span className="text-xl font-bold tabular-nums text-foreground">{ngn(totals.total)}</span>
+                  <span className="text-xl font-bold tabular-nums text-foreground">{cedi(totals.total)}</span>
                 </div>
               </div>
               <div className="mt-3 rounded-md bg-muted/50 p-2.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">Total margin</span>
                   <span className="font-semibold tabular-nums text-foreground">
-                    {totals.marginPct.toFixed(1)}% · {ngn(totals.marginValue)}
+                    {totals.marginPct.toFixed(1)}% · {cedi(totals.marginValue)}
                   </span>
                 </div>
               </div>
@@ -538,9 +538,8 @@ export function QuoteBuilder() {
                 <Select value={currency} onValueChange={setCurrency}>
                   <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="NGN">NGN ₦ — Nigerian Naira</SelectItem>
+                    <SelectItem value="GHS">GHS GH₵ — Ghana Cedi</SelectItem>
                     <SelectItem value="USD">USD $ — US Dollar</SelectItem>
-                    <SelectItem value="GHS">GHS ₵ — Ghanaian Cedi</SelectItem>
                   </SelectContent>
                 </Select>
               </Setting>
@@ -666,7 +665,7 @@ export function QuoteBuilder() {
               <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">Message</p>
               <Textarea
                 rows={7}
-                defaultValue={`Dear ${buyer.split(" ")[0]} team,\n\nThank you for your enquiry. Please find attached our quotation QT-2026-0418 for ${title}.\n\nTotal: ${ngn(totals.total)} (incl. VAT) · ${incoterm} · valid ${validity} days.\n\nWe'd be glad to answer any questions.\n\nBest regards,\nSamuel Adeyemi\nWestern Premium`}
+                defaultValue={`Dear ${buyer.split(" ")[0]} team,\n\nThank you for your enquiry. Please find attached our quotation QT-2026-0418 for ${title}.\n\nTotal: ${cedi(totals.total)} (incl. VAT) · ${incoterm} · valid ${validity} days.\n\nWe'd be glad to answer any questions.\n\nBest regards,\nSamuel Adeyemi\nWestern Premium`}
                 className="resize-none text-sm"
               />
             </div>
@@ -797,8 +796,8 @@ function QuotePdf({
                   <p className="text-muted-foreground">{l.spec}</p>
                 </td>
                 <td className="py-2 text-center tabular-nums text-foreground">{l.quantity}</td>
-                <td className="py-2 text-right tabular-nums text-foreground">{ngn(c.sellingPerUnit)}</td>
-                <td className="py-2 text-right font-medium tabular-nums text-foreground">{ngn(c.total)}</td>
+                <td className="py-2 text-right tabular-nums text-foreground">{cedi(c.sellingPerUnit)}</td>
+                <td className="py-2 text-right font-medium tabular-nums text-foreground">{cedi(c.total)}</td>
               </tr>
             )
           })}
@@ -806,11 +805,11 @@ function QuotePdf({
       </table>
 
       <div className="mt-3 ml-auto w-56 space-y-1 text-xs">
-        <Row label="Subtotal" value={ngn(totals.subtotal)} />
-        <Row label="VAT (7.5%)" value={ngn(totals.vat)} />
+        <Row label="Subtotal" value={cedi(totals.subtotal)} />
+        <Row label="VAT (7.5%)" value={cedi(totals.vat)} />
         <div className="flex items-baseline justify-between border-t border-border pt-1">
           <span className="font-semibold text-foreground">Total</span>
-          <span className="text-base font-bold tabular-nums text-primary">{ngn(totals.total)}</span>
+          <span className="text-base font-bold tabular-nums text-primary">{cedi(totals.total)}</span>
         </div>
       </div>
 

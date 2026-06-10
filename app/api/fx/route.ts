@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 // Base currency: GHS. We surface the inverse so it reads "1 USD = X GHS".
 export const revalidate = 1800 // cache for 30 minutes
 
-const TARGETS = ["USD", "EUR", "GBP", "CNY", "ZAR", "NGN", "AED"] as const
+const TARGETS = ["USD", "EUR", "GBP", "CNY", "ZAR", "AED"] as const
 
 const FALLBACK: Record<string, number> = {
   USD: 0.064,
@@ -12,7 +12,6 @@ const FALLBACK: Record<string, number> = {
   GBP: 0.05,
   CNY: 0.46,
   ZAR: 1.17,
-  NGN: 99.5,
   AED: 0.235,
 }
 

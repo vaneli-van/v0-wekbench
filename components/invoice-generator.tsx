@@ -87,7 +87,7 @@ export function InvoiceGenerator({ prefill }: { prefill: InvoicePrefill }) {
   const [savedAt, setSavedAt] = useState("just now")
 
   const totals = useMemo(() => computeTotals(lines), [lines])
-  const currency = currencies[currencyKey] ?? currencies.NGN
+  const currency = currencies[currencyKey] ?? currencies.GHS
 
   const requiredDocs = docs.filter((d) => d.required)
   const attachedRequired = requiredDocs.filter((d) => d.attached).length

@@ -5,7 +5,7 @@ import { Calculator, RotateCcw } from "lucide-react"
 import { landedCost } from "@/lib/data"
 
 function ngn(n: number) {
-  return "₦" + Math.round(n).toLocaleString("en-NG")
+  return "GH₵" + Math.round(n).toLocaleString("en-GH")
 }
 
 export function LandedCostCalculator() {
@@ -49,7 +49,7 @@ export function LandedCostCalculator() {
 
   const rows = [
     { label: "Supplier cost (per unit)", value: `$${landedCost.supplierCost} → ${ngn(calc.supplierNgn)}`, note: landedCost.currency },
-    { label: "FX rate (USD → NGN)", value: fxRate.toLocaleString(), note: "editable" },
+    { label: "FX rate (USD → GHS)", value: fxRate.toLocaleString(), note: "editable" },
     { label: `FX buffer (${fxBuffer}%)`, value: `Effective ${calc.effectiveFx.toFixed(0)}`, note: "editable" },
     { label: "Freight (per unit)", value: ngn(calc.freight) },
     { label: `Duty (${duty}%)`, value: ngn(calc.dutyAmt), note: "editable" },
@@ -110,7 +110,7 @@ export function LandedCostCalculator() {
         <div className="rounded-xl border border-border bg-card p-5">
           <h3 className="text-sm font-semibold text-foreground">Pricing Assumptions</h3>
           <div className="mt-4 space-y-4">
-            <Slider label="FX Rate (USD → NGN)" min={1400} max={1800} step={10} value={fxRate} onChange={setFxRate} suffix="" />
+            <Slider label="FX Rate (USD → GHS)" min={1400} max={1800} step={10} value={fxRate} onChange={setFxRate} suffix="" />
             <Slider label="FX Buffer" min={0} max={10} step={0.5} value={fxBuffer} onChange={setFxBuffer} suffix="%" />
             <Slider label="Import Duty" min={0} max={20} step={1} value={duty} onChange={setDuty} suffix="%" />
             <Slider label="Margin" min={5} max={40} step={1} value={margin} onChange={setMargin} suffix="%" />

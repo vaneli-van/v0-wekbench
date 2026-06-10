@@ -39,10 +39,10 @@ export default function InvoicesPage() {
 
       <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {[
-          { label: "Outstanding", value: "₦27.3M", tone: "text-warning" },
-          { label: "Sent this month", value: "₦34.0M", tone: "text-info" },
-          { label: "Paid this month", value: "₦19.2M", tone: "text-success" },
-          { label: "Disputed", value: "₦0", tone: "text-muted-foreground" },
+          { label: "Outstanding", value: "GH₵27.3M", tone: "text-warning" },
+          { label: "Sent this month", value: "GH₵34.0M", tone: "text-info" },
+          { label: "Paid this month", value: "GH₵19.2M", tone: "text-success" },
+          { label: "Disputed", value: "GH₵0", tone: "text-muted-foreground" },
         ].map((s) => (
           <Card key={s.label} className="p-4">
             <p className="text-sm text-muted-foreground">{s.label}</p>

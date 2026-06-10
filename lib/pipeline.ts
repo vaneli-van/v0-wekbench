@@ -235,18 +235,18 @@ export const pipelineQuotes: PipelineQuote[] = [
   },
 ]
 
-export function formatNaira(value: number): string {
+export function formatCedi(value: number): string {
   if (value >= 1_000_000) {
-    return `₦${(value / 1_000_000).toFixed(value % 1_000_000 === 0 ? 0 : 1)}M`
+    return `GH₵${(value / 1_000_000).toFixed(value % 1_000_000 === 0 ? 0 : 1)}M`
   }
   if (value >= 1_000) {
-    return `₦${(value / 1_000).toFixed(0)}K`
+    return `GH₵${(value / 1_000).toFixed(0)}K`
   }
-  return `₦${value}`
+  return `GH₵${value}`
 }
 
-export function formatNairaFull(value: number): string {
-  return `₦${value.toLocaleString("en-NG")}`
+export function formatCediFull(value: number): string {
+  return `GH₵${value.toLocaleString("en-GH")}`
 }
 
 export function initials(name: string): string {

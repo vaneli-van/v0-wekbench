@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { type PipelineQuote, formatNaira, initials } from "@/lib/pipeline"
+import { type PipelineQuote, formatCedi, initials } from "@/lib/pipeline"
 import { cn } from "@/lib/utils"
 
 export function QuoteCard({
@@ -73,7 +73,7 @@ export function QuoteCard({
       <p className="mt-0.5 line-clamp-2 text-sm font-medium leading-snug text-foreground">{quote.title}</p>
 
       {/* Value */}
-      <p className="mt-2 text-sm font-semibold tabular-nums text-foreground">{formatNaira(quote.value)}</p>
+      <p className="mt-2 text-sm font-semibold tabular-nums text-foreground">{formatCedi(quote.value)}</p>
 
       {/* Footer: icons + days in stage */}
       <div className="mt-3 flex items-center justify-between border-t border-border pt-2.5">

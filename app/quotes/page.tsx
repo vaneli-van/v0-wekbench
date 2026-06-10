@@ -31,8 +31,8 @@ import {
   PIPELINE_STAGES,
   ASSIGNEES,
   SECTORS,
-  formatNaira,
-  formatNairaFull,
+  formatCedi,
+  formatCediFull,
   initials,
   type PipelineQuote,
   type PipelineStageId,
@@ -122,7 +122,7 @@ export default function QuotesPage() {
           <div>
             <h1 className="text-xl font-semibold text-foreground">Quote pipeline</h1>
             <p className="text-sm text-muted-foreground">
-              {filtered.length} quotes · {formatNaira(filtered.reduce((s, q) => s + q.value, 0))} total value
+              {filtered.length} quotes · {formatCedi(filtered.reduce((s, q) => s + q.value, 0))} total value
             </p>
           </div>
           <Button size="sm" onClick={() => router.push("/rfq/RFQ-2026-0418")}>
@@ -258,7 +258,7 @@ function KanbanBoard({
                     </span>
                   </div>
                 </div>
-                <p className="mt-0.5 text-xs tabular-nums text-muted-foreground">{formatNaira(total)}</p>
+                  <p className="mt-0.5 text-xs tabular-nums text-muted-foreground">{formatCedi(total)}</p>
               </div>
 
               {/* Cards */}
@@ -360,7 +360,7 @@ function ListView({
                   </span>
                 </td>
                 <td className="px-3 py-2.5 text-right font-medium tabular-nums text-foreground">
-                  {formatNairaFull(q.value)}
+                      {formatCediFull(q.value)}
                 </td>
                 <td className="px-3 py-2.5">
                   <span className={cn("tabular-nums", q.daysInStage > 7 ? "font-medium text-destructive" : "text-muted-foreground")}>

@@ -20,7 +20,6 @@ export const sellerProfile = {
 
 /* ----------------------------- Currencies ----------------------------- */
 export const currencies: Record<string, { symbol: string; code: string; label: string }> = {
-  NGN: { symbol: "₦", code: "NGN", label: "Nigerian Naira" },
   GHS: { symbol: "GH₵", code: "GHS", label: "Ghana Cedi" },
   USD: { symbol: "$", code: "USD", label: "US Dollar" },
 }
@@ -62,14 +61,14 @@ export const requiredDocTemplate: Omit<RequiredDoc, "attached" | "fileName">[] =
   { id: "scr", name: "Service Completion Report", required: false },
 ]
 
-/* Parse "₦27,300,000" / "GH₵1,200.50" → 27300000 */
+  /* Parse "GH₵27,300,000" / "GH₵1,200.50" → 27300000 */
 export function parseAmount(value: string): number {
   const n = Number(value.replace(/[^0-9.]/g, ""))
   return Number.isFinite(n) ? n : 0
 }
 
 export function formatMoney(amount: number, currencyKey: string): string {
-  const c = currencies[currencyKey] ?? currencies.NGN
+  const c = currencies[currencyKey] ?? currencies.GHS
   return `${c.symbol}${amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}`
 }
 
@@ -166,7 +165,7 @@ export function getInvoicePrefill(orderId: string): InvoicePrefill | null {
     issueDate: today,
     dueDate: addDays(today, 30),
     paymentTermsDays: 30,
-    currencyKey: "NGN",
+    currencyKey: "GHS",
     lines,
     status,
     amountPaid: isPaid ? totals.total : isSent ? Math.round(totals.total * 0.3) : 0,

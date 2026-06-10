@@ -40,7 +40,7 @@ const kpis = [
   },
   {
     label: "Won this month",
-    value: "₦94.2M",
+    value: "GH₵94.2M",
     icon: TrendingUp,
     href: "/quotes",
     delta: { dir: "up" as const, text: "61% win rate" },
@@ -57,15 +57,15 @@ const kpis = [
 /* ---- Activity feed ---- */
 const activity = [
   { id: 1, type: "rfq", icon: Inbox, text: "New RFQ from Meridian Bank Plc", meta: "25 x Dell Latitude laptops", time: "12m ago" },
-  { id: 2, type: "quote", icon: FileText, text: "Quote QT-2026-0418 sent to Meridian Bank", meta: "₦53.1M · v1", time: "1h ago" },
+  { id: 2, type: "quote", icon: FileText, text: "Quote QT-2026-0418 sent to Meridian Bank", meta: "GH₵53.1M · v1", time: "1h ago" },
   { id: 3, type: "po", icon: PackageCheck, text: "PO received from Equator Logistics", meta: "30 x Rugged tablets", time: "3h ago" },
-  { id: 4, type: "invoice", icon: ReceiptText, text: "Invoice INV-0392 marked paid", meta: "₦27.3M settled", time: "5h ago" },
+  { id: 4, type: "invoice", icon: ReceiptText, text: "Invoice INV-0392 marked paid", meta: "GH₵27.3M settled", time: "5h ago" },
   { id: 5, type: "rfq", icon: Inbox, text: "New RFQ from Sahel Health Group", meta: "Network switches & UPS", time: "Yesterday" },
   { id: 6, type: "delivered", icon: Truck, text: "Order ORD-0356 delivered", meta: "Atlas Manufacturing", time: "Yesterday" },
-  { id: 7, type: "quote", icon: FileText, text: "Quote QT-2026-0381 approved", meta: "Atlas Manufacturing · ₦14.8M", time: "2 days ago" },
+  { id: 7, type: "quote", icon: FileText, text: "Quote QT-2026-0381 approved", meta: "Atlas Manufacturing · GH₵14.8M", time: "2 days ago" },
   { id: 8, type: "po", icon: PackageCheck, text: "PO received from Sahel Health", meta: "6 x APC UPS units", time: "2 days ago" },
   { id: 9, type: "rfq", icon: Inbox, text: "New RFQ from Coastal Telecoms", meta: "Server rack & cooling", time: "3 days ago" },
-  { id: 10, type: "invoice", icon: ReceiptText, text: "Invoice INV-0370 issued", meta: "Sahel Health · ₦19.2M", time: "4 days ago" },
+  { id: 10, type: "invoice", icon: ReceiptText, text: "Invoice INV-0370 issued", meta: "Sahel Health · GH₵19.2M", time: "4 days ago" },
 ]
 
 const activityTone: Record<string, string> = {
@@ -251,7 +251,7 @@ export default function DashboardPage() {
               <span className="font-semibold tabular-nums text-foreground">{pipelineTotalCount}</span> quotes
             </span>
             <span>
-              <span className="font-semibold tabular-nums text-foreground">₦{pipelineTotalValue.toFixed(1)}M</span>{" "}
+              <span className="font-semibold tabular-nums text-foreground">GH₵{pipelineTotalValue.toFixed(1)}M</span>{" "}
               total value
             </span>
           </div>
@@ -268,7 +268,7 @@ export default function DashboardPage() {
                   seg.className,
                   seg.text,
                 )}
-                title={`${seg.stage}: ${seg.count} quotes · ₦${seg.value}M`}
+                title={`${seg.stage}: ${seg.count} quotes · GH₵${seg.value}M`}
               >
                 {seg.count}
               </Link>
@@ -280,7 +280,7 @@ export default function DashboardPage() {
                 <span className={cn("size-2.5 rounded-sm", seg.className)} aria-hidden />
                 <span className="text-muted-foreground">{seg.stage}</span>
                 <span className="font-medium tabular-nums text-foreground">{seg.count}</span>
-                <span className="tabular-nums text-muted-foreground">· ₦{seg.value}M</span>
+                <span className="tabular-nums text-muted-foreground">· GH₵{seg.value}M</span>
               </div>
             ))}
           </div>
@@ -315,7 +315,7 @@ export default function DashboardPage() {
                   />
                 </div>
                 <span className="w-16 shrink-0 text-right font-mono text-xs font-medium tabular-nums text-foreground">
-                  ₦{b.value.toFixed(1)}M
+                  GH₵{b.value.toFixed(1)}M
                 </span>
               </li>
             ))}

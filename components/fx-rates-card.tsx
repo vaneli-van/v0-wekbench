@@ -15,7 +15,6 @@ const flagFor: Record<string, string> = {
   GBP: "Pound Sterling",
   CNY: "Chinese Yuan",
   ZAR: "South African Rand",
-  NGN: "Nigerian Naira",
   AED: "UAE Dirham",
 }
 
