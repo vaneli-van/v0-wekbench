@@ -12,6 +12,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
 import { StatusBadge } from "@/components/foundations/status-badge"
 import { AiBadge, AiConfidence, AiSources } from "@/components/foundations/ai-content"
+import { EmptyState } from "@/components/foundations/empty-state"
 import { PricingHistoryChart } from "./pricing-history-chart"
 import {
   type CatalogProduct,
@@ -168,7 +169,7 @@ export function ProductDrawer({
                 {/* Equivalents */}
                 <TabsContent value="equivalents" className="mt-0">
                   {product.equivalents.length === 0 ? (
-                    <p className="py-8 text-center text-sm text-muted-foreground">No equivalents recorded yet.</p>
+                    <EmptyState icon={ArrowLeftRight} title="No equivalents recorded yet." />
                   ) : (
                     <>
                       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -224,9 +225,7 @@ export function ProductDrawer({
                 {/* Quote history */}
                 <TabsContent value="quotes" className="mt-0">
                   {product.quoteHistory.length === 0 ? (
-                    <p className="py-8 text-center text-sm text-muted-foreground">
-                      This product hasn&apos;t been included in any quotes yet.
-                    </p>
+                    <EmptyState icon={FileText} title="Not yet included in any quotes." />
                   ) : (
                     <ul className="flex flex-col gap-2">
                       {product.quoteHistory.map((q) => (

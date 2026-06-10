@@ -212,14 +212,20 @@ export default function FoundationsPage() {
           </Block>
 
           {/* Empty states */}
-          <Block title="Empty States" description="One sentence of guidance and a single primary CTA per major list. Monochrome icon only — no illustrations.">
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              <EmptyState icon={FileText} title="No RFQs yet" description="Incoming buyer requests will appear here once your capture email is connected." actionLabel="Connect email" />
-              <EmptyState icon={ReceiptText} title="No quotes" description="Build a quote from any RFQ to start tracking win rates." actionLabel="New quote" />
-              <EmptyState icon={ShoppingCart} title="No orders" description="Accepted quotes convert into orders you can track here." actionLabel="View quotes" />
-              <EmptyState icon={ReceiptText} title="No invoices" description="Generated invoices and document packs will be listed here." actionLabel="Create invoice" />
-              <EmptyState icon={BookOpen} title="Empty catalog" description="Import a supplier price list to start matching products automatically." actionLabel="Import catalog" />
-              <EmptyState icon={Package} title="No suppliers" description="Add suppliers to source against incoming RFQs." actionLabel="Add supplier" />
+          <Block title="Empty States" description="A monochrome icon, one sentence of guidance, a primary CTA, and an optional secondary link. No illustrations or marketing copy.">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 [&>*]:rounded-lg [&>*]:border [&>*]:border-dashed [&>*]:border-border [&>*]:bg-card">
+              <EmptyState
+                icon={FileText}
+                title="No RFQs match your filters."
+                description="Try clearing filters or capture a new RFQ."
+                action={{ label: "New RFQ" }}
+                secondaryAction={{ label: "Clear filters" }}
+              />
+              <EmptyState icon={ReceiptText} title="No quotes yet." description="Build a quote from any RFQ to start tracking win rates." action={{ label: "New quote" }} />
+              <EmptyState icon={ShoppingCart} title="No orders yet." description="Accepted quotes convert into orders you can track here." action={{ label: "View quotes" }} />
+              <EmptyState icon={ReceiptText} title="No invoices yet." description="Generate an invoice from any accepted order." action={{ label: "Create invoice" }} />
+              <EmptyState icon={BookOpen} title="Your catalog is empty." description="Import a supplier price list to start matching products." action={{ label: "Import catalog" }} />
+              <EmptyState icon={Package} title="No suppliers yet." description="Add suppliers to source against incoming RFQs." action={{ label: "Add supplier" }} />
             </div>
           </Block>
         </div>

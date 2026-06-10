@@ -12,6 +12,7 @@ import {
   X,
   ArrowUpDown,
   Bookmark,
+  ReceiptText,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,6 +27,7 @@ import {
 import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner"
 import { QuoteCard } from "@/components/pipeline/quote-card"
+import { EmptyState } from "@/components/foundations/empty-state"
 import {
   pipelineQuotes,
   PIPELINE_STAGES,
@@ -481,12 +483,12 @@ function ViewToggleButton({
 
 function BoardEmptyState() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-2 px-4 text-center">
-      <p className="text-sm font-medium text-foreground">No quotes yet</p>
-      <p className="text-sm text-muted-foreground">Build your first quote from an RFQ.</p>
-      <Button size="sm" className="mt-2" asChild>
-        <a href="/rfq/RFQ-2026-0418">Go to RFQ inbox</a>
-      </Button>
-    </div>
+    <EmptyState
+      className="flex-1"
+      icon={ReceiptText}
+      title="No quotes yet."
+      description="Build your first quote from an RFQ to start tracking your pipeline."
+      action={{ label: "Go to RFQ inbox", href: "/inbox" }}
+    />
   )
 }

@@ -17,6 +17,7 @@ import {
 
 import type { TimelineEvent, TimelineEventType } from "@/lib/order-detail"
 import { cn } from "@/lib/utils"
+import { EmptyState } from "@/components/foundations/empty-state"
 
 const eventMeta: Record<TimelineEventType, { icon: React.ElementType; tone: string }> = {
   po: { icon: FileText, tone: "text-accent bg-accent/10 border-accent/20" },
@@ -51,15 +52,11 @@ function CopyTracking({ value }: { value: string }) {
 export function TrackingTimeline({ events }: { events: TimelineEvent[] }) {
   if (events.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border px-6 py-12 text-center">
-        <div className="flex size-10 items-center justify-center rounded-full bg-muted text-muted-foreground">
-          <Truck className="size-5" />
-        </div>
-        <p className="mt-3 text-sm font-medium text-foreground">No events yet</p>
-        <p className="mt-1 max-w-xs text-xs text-muted-foreground text-pretty">
-          Add the first update when supplier orders are placed.
-        </p>
-      </div>
+      <EmptyState
+        icon={Truck}
+        title="No tracking events yet."
+        description="Updates will appear here once supplier orders are placed."
+      />
     )
   }
 

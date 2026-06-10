@@ -16,6 +16,7 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ProductDrawer } from "@/components/catalog/product-drawer"
 import { AddProductDialog } from "@/components/catalog/add-product-dialog"
+import { EmptyState } from "@/components/foundations/empty-state"
 import {
   catalogProducts,
   categoryTree,
@@ -279,13 +280,14 @@ export default function CatalogPage() {
           {/* Views */}
           <div className="min-h-0 flex-1 overflow-y-auto">
             {filtered.length === 0 ? (
-              <div className="flex h-full flex-col items-center justify-center text-center">
-                <Search className="size-8 text-muted-foreground/40" />
-                <p className="mt-3 text-sm font-medium text-foreground">No products match your filters</p>
-                <button onClick={clearFilters} className="mt-1 text-xs text-muted-foreground hover:text-foreground">
-                  Clear all filters
-                </button>
-              </div>
+              <EmptyState
+                className="h-full"
+                icon={Search}
+                title="No products match your filters."
+                description="Try clearing filters or add a product to your catalog."
+                action={{ label: "Add product", onClick: () => setAddOpen(true) }}
+                secondaryAction={{ label: "Clear filters", onClick: clearFilters }}
+              />
             ) : view === "table" ? (
               <TableView
                 products={filtered}

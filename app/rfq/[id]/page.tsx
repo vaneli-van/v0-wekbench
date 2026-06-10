@@ -360,11 +360,11 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
         <section className="lg:col-span-6">
           {items.length === 0 ? (
             <EmptyState
+              className="rounded-lg border border-dashed border-border bg-card"
               icon={ClipboardList}
-              title="No line items yet"
-              description="We couldn't extract any line items automatically. Start by adding them manually."
-              actionLabel="Add line item"
-              onAction={addItem}
+              title="No line items were extracted."
+              description="Add the requested items manually to start sourcing."
+              action={{ label: "Add line item", onClick: addItem }}
             />
           ) : (
             <div className="space-y-3">

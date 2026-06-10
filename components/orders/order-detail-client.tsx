@@ -24,6 +24,7 @@ import {
 import { PageHeader } from "@/components/page-header"
 import { StatusBadge } from "@/components/status-badge"
 import { TrackingTimeline } from "@/components/orders/tracking-timeline"
+import { EmptyState } from "@/components/foundations/empty-state"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -240,7 +241,11 @@ export function OrderDetailClient({ order, detail }: { order: Order; detail: Ord
 
               <TabsContent value="documents" className="mt-4">
                 {detail.documents.length === 0 ? (
-                  <p className="py-6 text-center text-sm text-muted-foreground">No documents yet.</p>
+                  <EmptyState
+                    icon={FileText}
+                    title="No documents yet."
+                    description="Generated invoices and packing lists will appear here."
+                  />
                 ) : (
                   <ul className="divide-y divide-border">
                     {detail.documents.map((d) => (
@@ -266,7 +271,11 @@ export function OrderDetailClient({ order, detail }: { order: Order; detail: Ord
 
               <TabsContent value="comms" className="mt-4">
                 {detail.comms.length === 0 ? (
-                  <p className="py-6 text-center text-sm text-muted-foreground">No communications yet.</p>
+                  <EmptyState
+                    icon={Mail}
+                    title="No communications yet."
+                    description="Emails and messages with the buyer and suppliers will appear here."
+                  />
                 ) : (
                   <ul className="space-y-3">
                     {detail.comms.map((c) => (

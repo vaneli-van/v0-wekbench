@@ -21,6 +21,7 @@ import {
 
 import { PageHeader } from "@/components/page-header"
 import { StatusBadge } from "@/components/status-badge"
+import { EmptyState } from "@/components/foundations/empty-state"
 import { inboxEmails, type InboxEmail } from "@/lib/data"
 import { cn } from "@/lib/utils"
 
@@ -256,8 +257,12 @@ export default function InboxPage() {
               </div>
             </div>
           ) : (
-            <div className="rounded-xl border border-dashed border-border bg-card p-8 text-center text-sm text-muted-foreground">
-              Select an email to see ToolBox suggestions and actions.
+            <div className="rounded-xl border border-dashed border-border bg-card">
+              <EmptyState
+                icon={MailOpen}
+                title="No email selected."
+                description="Select an email to see ToolBox suggestions and actions."
+              />
             </div>
           )}
         </aside>
