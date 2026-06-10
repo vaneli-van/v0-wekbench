@@ -28,7 +28,7 @@ const navGroups: {
   {
     label: "Workflow",
     items: [
-      { name: "Dashboard", href: "/", icon: LayoutDashboard },
+      { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
       { name: "In Toolbox", href: "/inbox", icon: Inbox, badge: 3 },
       { name: "Quotes", href: "/quotes", icon: FileText, badge: 1 },
       { name: "Product Search", href: "/product-search", icon: Search },
@@ -60,7 +60,7 @@ export function AppSidebar() {
   const pathname = usePathname()
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/"
+    if (href === "/dashboard") return pathname === "/dashboard"
     return pathname.startsWith(href)
   }
 

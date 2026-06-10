@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { AppSidebar } from '@/components/app-sidebar'
-import { Topbar } from '@/components/topbar'
+import { AppShell } from '@/components/app-shell'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -39,13 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
-        <div className="flex h-screen overflow-hidden">
-          <AppSidebar />
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <Topbar />
-            <main className="flex-1 overflow-y-auto bg-background">{children}</main>
-          </div>
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   )

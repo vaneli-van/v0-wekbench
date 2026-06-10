@@ -61,7 +61,7 @@ export default function OnboardingPage() {
   const back = () => setStep((s) => Math.max(1, s - 1))
 
   if (done) {
-    return <Confirmation onDashboard={() => router.push("/")} />
+    return <Confirmation onDashboard={() => router.push("/dashboard")} />
   }
 
   const current = STEPS.find((s) => s.id === step)!
@@ -120,7 +120,7 @@ export default function OnboardingPage() {
           </ol>
 
           <button
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/dashboard")}
             className="shrink-0 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             Skip for now

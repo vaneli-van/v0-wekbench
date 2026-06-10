@@ -25,7 +25,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Button } from "@/components/ui/button"
 
 const mobileNav = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "In Toolbox", href: "/inbox", icon: Inbox },
   { name: "Email Capture", href: "/email-capture", icon: AtSign },
   { name: "Quotes", href: "/quotes", icon: FileText },
@@ -41,7 +41,7 @@ const mobileNav = [
 ]
 
 const titleMap: Record<string, string> = {
-  "/": "Command Center",
+  "/dashboard": "Command Center",
   "/inbox": "In Toolbox",
   "/email-capture": "Email Capture",
   "/quotes": "Quotes",
@@ -83,7 +83,7 @@ function IconButton({
 
 export function Topbar() {
   const pathname = usePathname()
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href))
+  const isActive = (href: string) => (href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href))
 
   const title =
     titleMap[pathname] ??

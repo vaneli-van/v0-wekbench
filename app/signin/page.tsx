@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Eye, EyeOff, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -32,6 +33,7 @@ function GoogleIcon({ className }: { className?: string }) {
 }
 
 export default function SignInPage() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
 
   return (
@@ -56,7 +58,10 @@ export default function SignInPage() {
 
             <form
               className="mt-8 flex flex-col gap-4"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault()
+                router.push("/dashboard")
+              }}
             >
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="email">Email</Label>
