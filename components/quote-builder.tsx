@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { StatusBadge } from "@/components/status-badge"
+import { AiBadge, AiSources } from "@/components/foundations/ai-content"
 import { LandedCostBreakdown } from "@/components/foundations/landed-cost-breakdown"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -479,9 +480,10 @@ export function QuoteBuilder() {
                           )}
                         </div>
                         <div>
-                          <p className="mb-1 flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                            Internal notes
+                          <p className="mb-1 flex flex-wrap items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                            Engineer&apos;s notes
                             <span className="rounded bg-muted px-1 text-[9px] normal-case">Team only</span>
+                            {line.internalNotes && <AiBadge sources={["Supplier stock feed", "FX desk", "Sourcing history"]} />}
                           </p>
                           <Textarea
                             value={line.internalNotes}
@@ -490,6 +492,13 @@ export function QuoteBuilder() {
                             placeholder="Visible only to your team"
                             className="resize-none text-sm"
                           />
+                          {line.internalNotes && (
+                            <AiSources
+                              className="mt-2"
+                              label="Sources"
+                              sources={["Supplier stock feed", "FX desk", "Sourcing history"]}
+                            />
+                          )}
                         </div>
                       </div>
                     </div>

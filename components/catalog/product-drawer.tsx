@@ -8,8 +8,10 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
 import { StatusBadge } from "@/components/foundations/status-badge"
+import { AiBadge, AiConfidence, AiSources } from "@/components/foundations/ai-content"
 import { PricingHistoryChart } from "./pricing-history-chart"
 import {
   type CatalogProduct,
@@ -46,6 +48,7 @@ export function ProductDrawer({
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
       <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-xl">
+        <TooltipProvider delayDuration={150}>
         {product && (
           <>
             {/* Header */}
@@ -167,36 +170,54 @@ export function ProductDrawer({
                   {product.equivalents.length === 0 ? (
                     <p className="py-8 text-center text-sm text-muted-foreground">No equivalents recorded yet.</p>
                   ) : (
-                    <ul className="flex flex-col gap-2">
-                      {product.equivalents.map((e) => (
-                        <li
-                          key={`${e.brand}-${e.model}`}
-                          className="flex items-center justify-between gap-3 rounded-md border border-border p-3"
-                        >
-                          <div className="min-w-0">
-                            <p className="text-sm font-medium text-foreground">
-                              {e.brand} {e.model}
-                            </p>
-                            <p className="text-xs text-muted-foreground">{e.note}</p>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span
-                              className={cn(
-                                "flex items-center gap-1 text-xs font-medium",
-                                e.priceDelta < 0 ? "text-success" : "text-muted-foreground",
-                              )}
-                            >
-                              {e.priceDelta < 0 ? <TrendingDown className="size-3.5" /> : <TrendingUp className="size-3.5" />}
-                              {e.priceDelta > 0 ? "+" : ""}
-                              {e.priceDelta}%
-                            </span>
-                            <Button variant="outline" size="sm" className="bg-transparent">
-                              <ArrowLeftRight className="size-3.5" /> Swap
-                            </Button>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                    <>
+                      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                        <p className="text-xs text-muted-foreground text-pretty">
+                          Suggested cross-references for {product.brand} {product.model}.
+                        </p>
+                        <div className="flex items-center gap-1.5">
+                          <AiBadge sources={[`${product.brand} ${product.model} spec`, "Cross-reference database"]} />
+                          <AiConfidence level="medium" score={0.81} />
+                        </div>
+                      </div>
+                      <ul className="flex flex-col gap-2">
+                        {product.equivalents.map((e) => (
+                          <li
+                            key={`${e.brand}-${e.model}`}
+                            className="rounded-md border border-border p-3"
+                          >
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="min-w-0">
+                                <p className="text-sm font-medium text-foreground">
+                                  {e.brand} {e.model}
+                                </p>
+                                <p className="text-xs text-muted-foreground">{e.note}</p>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <span
+                                  className={cn(
+                                    "flex items-center gap-1 text-xs font-medium",
+                                    e.priceDelta < 0 ? "text-success" : "text-muted-foreground",
+                                  )}
+                                >
+                                  {e.priceDelta < 0 ? <TrendingDown className="size-3.5" /> : <TrendingUp className="size-3.5" />}
+                                  {e.priceDelta > 0 ? "+" : ""}
+                                  {e.priceDelta}%
+                                </span>
+                                <Button variant="outline" size="sm" className="bg-transparent">
+                                  <ArrowLeftRight className="size-3.5" /> Swap
+                                </Button>
+                              </div>
+                            </div>
+                            <AiSources
+                              className="mt-2.5 border-t border-border pt-2.5"
+                              label="Matched on"
+                              sources={[`${product.brand} ${product.model} spec`, `${e.brand} datasheet`, "Cross-reference database"]}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </>
                   )}
                 </TabsContent>
 
@@ -252,6 +273,7 @@ export function ProductDrawer({
             </div>
           </>
         )}
+        </TooltipProvider>
       </SheetContent>
     </Sheet>
   )

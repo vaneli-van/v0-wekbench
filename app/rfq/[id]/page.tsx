@@ -34,6 +34,7 @@ import {
 
 import { StatusBadge } from "@/components/status-badge"
 import { ConfidenceBadge, type ConfidenceLevel } from "@/components/foundations/confidence-badge"
+import { AiBadge, AiSources } from "@/components/foundations/ai-content"
 import { EmptyState } from "@/components/foundations/empty-state"
 import { Button } from "@/components/ui/button"
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -367,6 +368,21 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
             />
           ) : (
             <div className="space-y-3">
+              {/* AI attribution header */}
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <AiBadge sources={[rfq.document.name, "Email body"]} />
+                  <span className="text-xs text-muted-foreground">
+                    {items.length} line items extracted
+                  </span>
+                </div>
+                <AiSources
+                  label="Sources"
+                  sources={[rfq.document.name, "Email body", "Spec table"]}
+                  onSelect={() => setSourceTab("original")}
+                />
+              </div>
+
               {/* Warning callout */}
               {lowCount > 0 && (
                 <div className="flex items-start gap-2.5 rounded-lg border border-warning/30 bg-warning/10 px-3.5 py-3">

@@ -4,9 +4,9 @@ import { useState } from "react"
 import { FileText, CheckCircle2, Circle, Sparkles, ExternalLink } from "lucide-react"
 import { productMatches, rfqs } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { AiBadge, AiConfidence, AiSources, type AiConfidenceLevel } from "@/components/foundations/ai-content"
 
-const confidenceTone = (c: number) =>
-  c >= 95 ? "text-success bg-success/10" : c >= 90 ? "text-info bg-info/10" : "text-warning bg-warning/10"
+const confidenceLevel = (c: number): AiConfidenceLevel => (c >= 95 ? "high" : c >= 90 ? "medium" : "low")
 
 export function ProductMatching() {
   const [selectedId, setSelectedId] = useState<string>("PM-1")
@@ -65,6 +65,10 @@ export function ProductMatching() {
                 </div>
                 <p className="mt-2 text-sm font-semibold text-foreground">{m.brand}</p>
                 <p className="text-sm text-muted-foreground">{m.model}</p>
+                <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                  <AiBadge sources={[`Requested item spec`, `${m.oem} catalogue`]} />
+                  <AiConfidence level={confidenceLevel(m.confidence)} score={m.confidence / 100} />
+                </div>
               </div>
 
               <div className="flex-1 space-y-3 p-4 text-sm">
@@ -75,17 +79,6 @@ export function ProductMatching() {
                   <Row label="Lead time" value={m.leadTime} />
                   <Row label="Indicative price" value={m.indicativePrice} strong />
                 </dl>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">Confidence</span>
-                  <span
-                    className={cn(
-                      "rounded-md px-2 py-0.5 text-xs font-semibold tabular-nums",
-                      confidenceTone(m.confidence),
-                    )}
-                  >
-                    {m.confidence}%
-                  </span>
-                </div>
                 <a
                   href="#"
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
@@ -94,6 +87,10 @@ export function ProductMatching() {
                   {m.datasheet}
                   <ExternalLink className="size-3" />
                 </a>
+                <AiSources
+                  className="border-t border-border pt-3"
+                  sources={[`${m.oem} catalogue`, m.datasheet, `Requested: ${requested.brand} ${requested.description}`]}
+                />
               </div>
 
               <div className="border-t border-border p-3">
