@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   LayoutDashboard,
@@ -20,6 +19,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { NavLink } from "@/components/nav-link"
 
 const navGroups: {
   label: string
@@ -100,8 +100,9 @@ export function AppSidebar() {
                 const Icon = item.icon
                 return (
                   <li key={item.href}>
-                    <Link
+                    <NavLink
                       href={item.href}
+                      spinnerClassName={active ? "text-sidebar-primary" : "text-sidebar-foreground/70"}
                       className={cn(
                         "flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors",
                         active
@@ -123,7 +124,7 @@ export function AppSidebar() {
                           {item.badge}
                         </span>
                       ) : null}
-                    </Link>
+                    </NavLink>
                   </li>
                 )
               })}

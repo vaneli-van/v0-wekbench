@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { NavLink } from "@/components/nav-link"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 
@@ -119,7 +120,7 @@ export function Topbar() {
                 const Icon = item.icon
                 return (
                   <li key={item.href}>
-                    <Link
+                    <NavLink
                       href={item.href}
                       className={cn(
                         "flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm",
@@ -130,7 +131,7 @@ export function Topbar() {
                     >
                       <Icon className="size-4" />
                       {item.name}
-                    </Link>
+                    </NavLink>
                   </li>
                 )
               })}
