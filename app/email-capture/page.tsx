@@ -10,7 +10,7 @@ export default function EmailCapturePage() {
     <div className="mx-auto max-w-7xl px-4 py-6 md:px-8">
       <PageHeader
         title="Email Capture"
-        description="ToolBox monitors dedicated inboxes, extracts RFQ details from attachments, and routes each email to the right buyer account automatically."
+        description="ToolBox monitors dedicated inboxes, extracts details from attachments — RFQs, purchase orders, amendments and more — and routes each email to the right buyer account automatically."
       />
 
       <div className="mb-6 grid gap-4 lg:grid-cols-3">
@@ -20,8 +20,8 @@ export default function EmailCapturePage() {
           </span>
           <h3 className="mt-3 font-semibold">1. Forward or BCC</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Buyers email your capture address directly, or your team forwards inbound RFQs. Each buyer gets a unique
-            address.
+            Buyers email your capture address directly, or your team forwards inbound documents. Each buyer gets a
+            unique address.
           </p>
         </Card>
         <Card className="p-5">
@@ -40,7 +40,7 @@ export default function EmailCapturePage() {
           </span>
           <h3 className="mt-3 font-semibold">3. Auto-route</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Emails are matched to the correct buyer and surfaced in the RFQ Inbox, ready for review and matching.
+            Emails are matched to the correct buyer and surfaced in your Toolbox, ready for review and routing.
           </p>
         </Card>
       </div>
@@ -53,7 +53,7 @@ export default function EmailCapturePage() {
             </span>
             <div>
               <h3 className="font-semibold">Master capture address</h3>
-              <p className="text-sm text-muted-foreground">Any RFQ sent here is auto-classified by sender domain.</p>
+              <p className="text-sm text-muted-foreground">Anything sent here is auto-classified by sender domain.</p>
             </div>
           </div>
           <Badge variant="outline" className="border-success/30 bg-success/10 text-success">
@@ -62,7 +62,7 @@ export default function EmailCapturePage() {
           </Badge>
         </div>
         <div className="mt-4 flex items-center justify-between gap-2 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
-          <code className="truncate text-sm">rfq@toolbox.westernpremium.com</code>
+          <code className="truncate text-sm">toolbox@toolbox.westernpremium.com</code>
           <Button variant="ghost" size="sm" className="gap-1.5 shrink-0">
             <Copy className="size-3.5" />
             Copy
