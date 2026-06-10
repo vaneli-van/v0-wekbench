@@ -23,6 +23,13 @@ import {
   PencilLine,
   Check,
   Clock,
+  PackageSearch,
+  Calculator,
+  ReceiptText,
+  MessageSquare,
+  FolderOpen,
+  History,
+  ArrowLeft,
 } from "lucide-react"
 
 import { StatusBadge } from "@/components/status-badge"
@@ -37,7 +44,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { rfqs } from "@/lib/data"
+import { ProductMatching } from "@/components/product-matching"
+import { LandedCostCalculator } from "@/components/landed-cost-calculator"
+import { QuoteBuilder } from "@/components/quote-builder"
+import { CommunicationUpdates } from "@/components/communication-updates"
+import { Timeline } from "@/components/timeline"
+import { rfqs, timeline } from "@/lib/data"
 import { cn } from "@/lib/utils"
 
 /* ---------------------------------------------------------------- */
@@ -189,6 +201,8 @@ export default function RFQDetailPage({
 function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
   const [items, setItems] = useState<ExtractedItem[]>(() => buildItems(rfq.id, rfq.lineItems))
   const [confirmed, setConfirmed] = useState(false)
+  const [stage, setStage] = useState<"extraction" | "sourcing">("extraction")
+  const [activeTab, setActiveTab] = useState<WorkflowTabId>("matches")
   const [sourceTab, setSourceTab] = useState<"original" | "text" | "attachments">("original")
 
   const lowCount = useMemo(() => items.filter((i) => i.confidence.level === "low").length, [items])
@@ -246,7 +260,24 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
-            <BuildQuoteButton confirmed={confirmed} rfqId={rfq.id} />
+            {stage === "sourcing" && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setStage("extraction")}
+                className="text-muted-foreground"
+              >
+                <ArrowLeft className="size-4" />
+                Extraction
+              </Button>
+            )}
+            <BuildQuoteButton
+              confirmed={confirmed}
+              onBuild={() => {
+                setStage("sourcing")
+                setActiveTab("quote")
+              }}
+            />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon" className="size-9">
@@ -267,7 +298,25 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
         </div>
       </header>
 
-      {/* ---------- 3-COLUMN BODY ---------- */}
+      {/* ---------- STAGE: SOURCING (workflow tabs) ---------- */}
+      {stage === "sourcing" ? (
+        <div className="mt-5">
+          <WorkflowTabs active={activeTab} onChange={setActiveTab} />
+          <div className="mt-5">
+            {activeTab === "matches" && <ProductMatching />}
+            {activeTab === "pricing" && <LandedCostCalculator />}
+            {activeTab === "quote" && <QuoteBuilder />}
+            {activeTab === "comms" && <CommunicationUpdates />}
+            {activeTab === "documents" && <DocumentsTab rfq={rfq} />}
+            {activeTab === "activity" && (
+              <div className="rounded-lg border border-border bg-card p-5">
+                <Timeline events={timeline} />
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+      /* ---------- STAGE: EXTRACTION (3-column body) ---------- */
       <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         {/* LEFT — SOURCE */}
         <section className="lg:col-span-3">
@@ -383,11 +432,15 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
             {/* Sticky confirm */}
             <div className="rounded-lg border border-border bg-card p-3">
               {confirmed ? (
-                <Button asChild className="w-full">
-                  <Link href={`/rfq/${rfq.id}?tab=matches`}>
-                    Continue to sourcing
-                    <ArrowRight className="size-4" />
-                  </Link>
+                <Button
+                  onClick={() => {
+                    setStage("sourcing")
+                    setActiveTab("matches")
+                  }}
+                  className="w-full"
+                >
+                  Continue to sourcing
+                  <ArrowRight className="size-4" />
                 </Button>
               ) : (
                 <Button onClick={() => setConfirmed(true)} className="w-full" disabled={items.length === 0}>
@@ -397,20 +450,21 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
               )}
               <p className="mt-2 text-center text-[11px] text-muted-foreground">
                 {confirmed
-                  ? "Extraction confirmed. You can now build the quote."
+                  ? "Extraction confirmed. Continue to product matching."
                   : "AI suggests, you confirm. Review the items above first."}
               </p>
             </div>
           </div>
         </aside>
       </div>
+      )}
       </div>
     </TooltipProvider>
   )
 }
 
 /* ---------- Build Quote button (gated) ---------- */
-function BuildQuoteButton({ confirmed, rfqId }: { confirmed: boolean; rfqId: string }) {
+function BuildQuoteButton({ confirmed, onBuild }: { confirmed: boolean; onBuild: () => void }) {
   if (!confirmed) {
     return (
       <Button disabled title="Confirm the extraction first">
@@ -418,10 +472,89 @@ function BuildQuoteButton({ confirmed, rfqId }: { confirmed: boolean; rfqId: str
       </Button>
     )
   }
+  return <Button onClick={onBuild}>Build Quote</Button>
+}
+
+/* ---------- Workflow tabs (sourcing stage) ---------- */
+type WorkflowTabId = "matches" | "pricing" | "quote" | "comms" | "documents" | "activity"
+
+const workflowTabs: { id: WorkflowTabId; label: string; icon: React.ElementType }[] = [
+  { id: "matches", label: "Product Matches", icon: PackageSearch },
+  { id: "pricing", label: "Pricing", icon: Calculator },
+  { id: "quote", label: "Quote", icon: ReceiptText },
+  { id: "comms", label: "Communication & Updates", icon: MessageSquare },
+  { id: "documents", label: "Documents", icon: FolderOpen },
+  { id: "activity", label: "Activity Timeline", icon: History },
+]
+
+function WorkflowTabs({
+  active,
+  onChange,
+}: {
+  active: WorkflowTabId
+  onChange: (id: WorkflowTabId) => void
+}) {
   return (
-    <Button asChild>
-      <Link href={`/rfq/${rfqId}?tab=quote`}>Build Quote</Link>
-    </Button>
+    <div className="overflow-x-auto border-b border-border">
+      <div className="flex min-w-max gap-1">
+        {workflowTabs.map((t) => {
+          const isActive = active === t.id
+          return (
+            <button
+              key={t.id}
+              onClick={() => onChange(t.id)}
+              className={cn(
+                "relative flex items-center gap-1.5 px-3 py-2.5 text-sm font-medium transition-colors",
+                isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <t.icon className="size-4" />
+              {t.label}
+              {isActive && (
+                <span className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-foreground" aria-hidden />
+              )}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+/* ---------- Documents tab ---------- */
+function DocumentsTab({ rfq }: { rfq: (typeof rfqs)[number] }) {
+  const docs = [
+    { name: rfq.document.name, size: rfq.document.size, kind: "Source RFQ", type: "pdf" as const },
+    { name: "Branch-list-Q3.xlsx", size: "32 KB", kind: "Attachment", type: "xls" as const },
+    { name: `Quote-${rfq.ref}-v1.pdf`, size: "180 KB", kind: "Generated quote", type: "pdf" as const },
+  ]
+  return (
+    <div className="overflow-hidden rounded-lg border border-border bg-card">
+      <ul className="divide-y divide-border">
+        {docs.map((d) => (
+          <li key={d.name} className="flex items-center gap-3 px-4 py-3">
+            <div
+              className={cn(
+                "flex size-9 items-center justify-center rounded-md",
+                d.type === "pdf" ? "bg-destructive/10 text-destructive" : "bg-success/10 text-success",
+              )}
+            >
+              <FileText className="size-4" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium text-foreground">{d.name}</p>
+              <p className="text-xs text-muted-foreground">
+                {d.kind} · {d.size}
+              </p>
+            </div>
+            <button className="rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground">
+              <Download className="size-4" />
+              <span className="sr-only">Download {d.name}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
