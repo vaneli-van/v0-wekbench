@@ -28,9 +28,11 @@ export default function InvoicesPage() {
         title="Invoices"
         description="Commercial invoices generated from confirmed orders. Track delivery and payment status."
         actions={
-          <Button size="sm">
-            <Plus className="size-4" />
-            New invoice
+          <Button size="sm" asChild>
+            <Link href="/invoices/new">
+              <Plus className="size-4" />
+              New invoice
+            </Link>
           </Button>
         }
       />
@@ -66,15 +68,15 @@ export default function InvoicesPage() {
               {orders.map((o) => (
                 <TableRow key={o.id}>
                   <TableCell>
-                    <div className="flex items-center gap-2">
+                    <Link href={`/invoices/${o.id}`} className="flex items-center gap-2 group">
                       <span className="flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
                         <FileText className="size-4" />
                       </span>
                       <div>
-                        <p className="font-medium">INV-{o.id.replace("ORD-", "")}</p>
+                        <p className="font-medium group-hover:underline">INV-{o.id.replace("ORD-", "")}</p>
                         <p className="text-xs text-muted-foreground">{o.orderedAt}</p>
                       </div>
-                    </div>
+                    </Link>
                   </TableCell>
                   <TableCell>
                     <p className="font-medium">{o.buyer}</p>
@@ -93,6 +95,11 @@ export default function InvoicesPage() {
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center justify-end gap-1">
+                      <Button variant="ghost" size="icon" className="size-8" aria-label="Open invoice" asChild>
+                        <Link href={`/invoices/${o.id}`}>
+                          <FileText className="size-4" />
+                        </Link>
+                      </Button>
                       <Button variant="ghost" size="icon" className="size-8" aria-label="Download invoice">
                         <Download className="size-4" />
                       </Button>
