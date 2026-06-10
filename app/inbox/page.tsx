@@ -22,7 +22,7 @@ import {
 import { PageHeader } from "@/components/page-header"
 import { StatusBadge } from "@/components/status-badge"
 import { EmptyState } from "@/components/foundations/empty-state"
-import { inboxEmails, type InboxEmail } from "@/lib/data"
+import { inboxEmails, orders, type InboxEmail } from "@/lib/data"
 import { cn } from "@/lib/utils"
 
 const typeMeta: Record<string, { label: string; tone: string }> = {
@@ -54,6 +54,12 @@ export default function InboxPage() {
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
   }
+
+  // Resolve a detected PO/quote reference to the real order it created.
+  const matchedOrder =
+    selected?.type === "po"
+      ? orders.find((o) => o.quoteRef === selected.detectedRef || o.poNumber === selected.detectedRef)
+      : null
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8">
@@ -201,7 +207,9 @@ export default function InboxPage() {
                     {selected.type === "amendment" &&
                       `Detected as an amendment to ${selected.detectedRef}. Link to the existing RFQ and review the changes.`}
                     {selected.type === "po" &&
-                      `Detected as a Purchase Order linked to ${selected.detectedRef}. Convert the quote into an order.`}
+                      (matchedOrder
+                        ? `Detected as a Purchase Order against ${selected.detectedRef}. Already converted to order ${matchedOrder.id} — open to track fulfilment.`
+                        : `Detected as a Purchase Order linked to ${selected.detectedRef}. Convert the quote into an order.`)}
                     {selected.type === "general" && "No RFQ, amendment, or PO detected. You can safely ignore this."}                  </p>
                 </div>
 
@@ -214,12 +222,12 @@ export default function InboxPage() {
                         className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
                       >
                         <Plus className="size-4" />
-                        Pull into RFQ
+                        Open {selected.detectedRef}
                       </Link>
                     ) : (
                       <button className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">
                         <Plus className="size-4" />
-                        Pull into RFQ
+                        Create RFQ
                       </button>
                     ))}
 
@@ -233,19 +241,28 @@ export default function InboxPage() {
                       className="inline-flex items-center justify-center gap-2 rounded-md bg-warning px-3 py-2 text-sm font-medium text-warning-foreground hover:opacity-90"
                     >
                       <RefreshCcw className="size-4" />
-                      Apply Amendment
+                      {selected.detectedRef ? `Apply to ${selected.detectedRef}` : "Apply Amendment"}
                     </Link>
                   )}
 
-                  {selected.type === "po" && (
-                    <Link
-                      href="/orders"
-                      className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-3 py-2 text-sm font-medium text-accent-foreground hover:opacity-90"
-                    >
-                      <ShoppingCart className="size-4" />
-                      Pull into Orders
-                    </Link>
-                  )}
+                  {selected.type === "po" &&
+                    (matchedOrder ? (
+                      <Link
+                        href={`/orders/${matchedOrder.id}`}
+                        className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-3 py-2 text-sm font-medium text-accent-foreground hover:opacity-90"
+                      >
+                        <ShoppingCart className="size-4" />
+                        Open {matchedOrder.id}
+                      </Link>
+                    ) : (
+                      <Link
+                        href="/orders"
+                        className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-3 py-2 text-sm font-medium text-accent-foreground hover:opacity-90"
+                      >
+                        <ShoppingCart className="size-4" />
+                        Convert to Order
+                      </Link>
+                    ))}
 
                   {selected.type === "general" && (
                     <button className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">
