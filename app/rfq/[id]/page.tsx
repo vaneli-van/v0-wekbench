@@ -459,9 +459,13 @@ function RFQDetail({ rfq }: { rfq: (typeof rfqs)[number] }) {
                   <ArrowRight className="size-4" />
                 </Button>
               ) : (
-                <Button onClick={() => setConfirmed(true)} className="w-full" disabled={items.length === 0}>
+                <Button
+                  onClick={() => setConfirmed(true)}
+                  className="h-auto w-full whitespace-normal py-2 text-center leading-snug"
+                  disabled={items.length === 0}
+                >
                   Confirm extraction and start sourcing
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-4 shrink-0" />
                 </Button>
               )}
               <p className="mt-2 text-center text-[11px] text-muted-foreground">
