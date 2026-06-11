@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation"
-import { Package, ShieldCheck, Headphones } from "lucide-react"
+import { ShieldCheck, Headphones } from "lucide-react"
 
 import { orders } from "@/lib/data"
 import { getOrderDetail } from "@/lib/order-detail"
 import { StatusBadge } from "@/components/status-badge"
 import { TrackingTimeline } from "@/components/orders/tracking-timeline"
 import { supplierStatusMeta } from "@/lib/order-detail"
+import { Wordmark } from "@/components/wordmark"
 
 export default function BuyerTrackingPage({ params }: { params: Promise<{ token: string }> }) {
   return <TrackingResolver params={params} />
@@ -36,12 +37,7 @@ async function TrackingResolver({ params }: { params: Promise<{ token: string }>
       <header className="border-b border-border bg-card">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-2.5">
-            <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <Package className="size-4" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-foreground">ToolBox</p>
-            </div>
+            <Wordmark size="sm" />
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2.5 py-1 text-xs font-medium text-success">
             <ShieldCheck className="size-3.5" />
@@ -154,7 +150,7 @@ async function TrackingResolver({ params }: { params: Promise<{ token: string }>
         </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Western Premium · Toolbox.africa · 2026
+            wekbench · wekbench.com · 2026
         </p>
       </main>
     </div>

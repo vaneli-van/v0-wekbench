@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'ToolBox by Western Premium',
+  title: 'wekbench',
   description:
     'Vendor-first procurement workflow platform. Manage the full RFQ-to-Quote-to-Order workflow for enterprise buyers.',
   generator: 'v0.app',

@@ -103,7 +103,7 @@ export default function IntegrationsPage() {
     <div className="mx-auto max-w-6xl px-4 py-6 md:px-8">
       <PageHeader
         title="Integrations"
-        description="Connect ToolBox to the systems your procurement team already runs on."
+        description="Connect wekbench to the systems your procurement team already runs on."
       />
 
       <div className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">

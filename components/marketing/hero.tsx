@@ -23,7 +23,7 @@ export function Hero() {
             Respond to RFQs in seconds, not days.
           </h1>
           <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-muted-foreground">
-            ToolBox is your trusted procurement partner. Register as a vendor or buyer, raise a
+            wekbench is your trusted procurement partner. Register as a vendor or buyer, raise a
             request, and we run it end to end — sourcing from connected OEMs and distributors,
             pricing instantly, and managing the purchase all the way to delivery.
           </p>

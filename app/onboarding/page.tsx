@@ -20,6 +20,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Wordmark } from "@/components/wordmark"
 import { Textarea } from "@/components/ui/textarea"
 import { Slider } from "@/components/ui/slider"
 import {
@@ -72,12 +73,7 @@ export default function OnboardingPage() {
         {/* Top bar: brand + progress + skip */}
         <header className="flex shrink-0 items-center gap-6 border-b border-border px-6 py-3.5">
           <div className="flex items-center gap-2.5">
-            <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <Sparkles className="size-4" />
-            </div>
-            <span className="hidden text-sm font-semibold tracking-tight text-foreground sm:inline">
-              ToolBox
-            </span>
+            <Wordmark size="sm" />
           </div>
 
           {/* Step indicator */}
@@ -354,7 +350,7 @@ function StepDemo() {
       <div className="flex items-start gap-3 rounded-lg border border-border bg-secondary/40 p-4">
         <Info className="mt-0.5 size-4 shrink-0 text-primary" />
         <p className="text-sm leading-relaxed text-muted-foreground">
-          This is what happens when a real RFQ arrives — ToolBox reads the document and extracts
+              This is what happens when a real RFQ arrives — wekbench reads the document and extracts
           every line item automatically. <span className="text-foreground">Try uploading one of yours next.</span>
         </p>
       </div>

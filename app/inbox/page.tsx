@@ -65,7 +65,7 @@ export default function InboxPage() {
     <div className="mx-auto max-w-7xl px-4 py-6 md:px-6 md:py-8">
       <PageHeader
         title="In Toolbox"
-        description="Inbound emails captured through your unique ToolBox addresses. ToolBox classifies each message — RFQs, purchase orders, amendments and more — and suggests the next action."
+        description="Inbound emails captured through your unique wekbench addresses. wekbench classifies each message — RFQs, purchase orders, amendments and more — and suggests the next action."
         actions={
           <button
             onClick={copyEmail}
@@ -199,7 +199,7 @@ export default function InboxPage() {
                 <div className="rounded-lg border border-accent/20 bg-accent/5 p-3">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-accent">
                     <Sparkles className="size-3.5" />
-                    ToolBox Suggestion
+                    wekbench Suggestion
                   </div>
                   <p className="mt-1 text-sm text-foreground">
                     {selected.type === "rfq" &&
@@ -290,7 +290,7 @@ export default function InboxPage() {
               <EmptyState
                 icon={MailOpen}
                 title="No email selected."
-                description="Select an email to see ToolBox suggestions and actions."
+                description="Select an email to see wekbench suggestions and actions."
               />
             </div>
           )}

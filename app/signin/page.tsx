@@ -3,11 +3,12 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Eye, EyeOff, Sparkles } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
+import { Wordmark } from "@/components/wordmark"
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
@@ -120,7 +121,7 @@ export default function SignInPage() {
 
             {/* Footer link */}
             <p className="mt-8 text-center text-sm text-muted-foreground">
-              New to ToolBox?{" "}
+              New to wekbench?{" "}
               <Link href="#" className="font-medium text-foreground underline-offset-4 hover:underline">
                 Request access
               </Link>
@@ -130,7 +131,7 @@ export default function SignInPage() {
 
         {/* Small footer */}
         <p className="text-center text-xs text-muted-foreground lg:text-left">
-          Western Premium · Toolbox.africa · 2026
+          wekbench · wekbench.com · 2026
         </p>
       </div>
 

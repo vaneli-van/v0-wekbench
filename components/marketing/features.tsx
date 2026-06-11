@@ -24,7 +24,7 @@ const features = [
   {
     icon: FileSpreadsheet,
     title: "Any format in",
-    body: "PDFs, Excel sheets, scanned images, or plain email text — ToolBox reads them all.",
+    body: "PDFs, Excel sheets, scanned images, or plain email text — wekbench reads them all.",
   },
   {
     icon: ShieldCheck,

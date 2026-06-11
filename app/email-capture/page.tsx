@@ -10,7 +10,7 @@ export default function EmailCapturePage() {
     <div className="mx-auto max-w-7xl px-4 py-6 md:px-8">
       <PageHeader
         title="Email Capture"
-        description="ToolBox monitors dedicated inboxes, extracts details from attachments — RFQs, purchase orders, amendments and more — and routes each email to the right buyer account automatically."
+        description="wekbench monitors dedicated inboxes, extracts details from attachments — RFQs, purchase orders, amendments and more — and routes each email to the right buyer account automatically."
       />
 
       <div className="mb-6 grid gap-4 lg:grid-cols-3">
