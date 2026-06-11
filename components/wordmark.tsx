@@ -1,33 +1,38 @@
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
+const RATIO = 2998 / 446
+
+const heights = {
+  sm: 20,
+  md: 24,
+  lg: 30,
+  xl: 40,
+} as const
+
 /**
- * The wekbench wordmark: "wek" in brand blue, "bench" in foreground.
- * Use `size` to scale the text. Defaults to small for navs/sidebars.
+ * The official wekbench wordmark logo image.
+ * Use `size` to scale it. Defaults to small for navs/sidebars.
  */
 export function Wordmark({
   className,
   size = "sm",
 }: {
   className?: string
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: keyof typeof heights
 }) {
-  const sizeClass = {
-    sm: "text-base",
-    md: "text-xl",
-    lg: "text-2xl",
-    xl: "text-3xl sm:text-4xl",
-  }[size]
+  const height = heights[size]
+  const width = Math.round(height * RATIO)
 
   return (
-    <span
-      className={cn(
-        "font-semibold lowercase tracking-tight leading-none select-none",
-        sizeClass,
-        className,
-      )}
-    >
-      <span className="text-primary">wek</span>
-      <span className="text-foreground">bench</span>
-    </span>
+    <Image
+      src="/wekbench-logo.png"
+      alt="wekbench"
+      width={width}
+      height={height}
+      priority
+      className={cn("h-auto w-auto select-none", className)}
+      style={{ height, width }}
+    />
   )
 }
