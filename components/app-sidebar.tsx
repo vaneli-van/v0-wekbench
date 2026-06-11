@@ -20,6 +20,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { NavLink } from "@/components/nav-link"
+import { Wordmark } from "@/components/wordmark"
 
 const navGroups: {
   label: string
@@ -68,12 +69,7 @@ export function AppSidebar() {
     <aside className="hidden md:flex w-60 shrink-0 flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border">
       {/* Brand */}
       <div className="flex items-center gap-2.5 px-4 h-14 border-b border-sidebar-border">
-        <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-bold">
-          T
-        </div>
-        <div className="leading-tight">
-          <p className="text-sm font-semibold text-sidebar-accent-foreground">ToolBox</p>
-        </div>
+        <Wordmark size="md" />
       </div>
 
       {/* Search */}

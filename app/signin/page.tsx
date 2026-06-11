@@ -42,10 +42,7 @@ export default function SignInPage() {
       <div className="flex flex-col px-6 py-8 sm:px-10 lg:px-16">
         {/* Wordmark */}
         <div className="flex items-center gap-2.5">
-          <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Sparkles className="size-4" />
-          </div>
-          <span className="text-base font-semibold tracking-tight text-foreground">ToolBox</span>
+          <Wordmark size="md" />
         </div>
 
         {/* Form block, vertically centered */}

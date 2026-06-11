@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, X, Sparkles } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { Wordmark } from "@/components/wordmark"
 
 const links = [
   { name: "Platform", href: "#platform" },
@@ -22,12 +23,7 @@ export function MarketingNav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Sparkles className="size-4" />
-          </span>
-          <span className="leading-tight">
-            <span className="block text-sm font-semibold tracking-tight text-foreground">ToolBox</span>
-          </span>
+          <Wordmark size="md" />
         </Link>
 
         {/* Desktop links */}

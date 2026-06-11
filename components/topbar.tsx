@@ -22,6 +22,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { NavLink } from "@/components/nav-link"
+import { Wordmark } from "@/components/wordmark"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 
@@ -106,12 +107,7 @@ export function Topbar() {
         <SheetContent side="left" className="w-64 bg-sidebar text-sidebar-foreground border-sidebar-border p-0">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
           <div className="flex items-center gap-2.5 px-4 h-14 border-b border-sidebar-border">
-            <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-bold">
-              T
-            </div>
-            <div className="leading-tight">
-              <p className="text-sm font-semibold text-sidebar-accent-foreground">ToolBox</p>
-            </div>
+            <Wordmark size="md" />
           </div>
           <nav className="p-2">
             <ul className="flex flex-col gap-0.5">

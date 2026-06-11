@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Sparkles } from "lucide-react"
+import { Wordmark } from "@/components/wordmark"
 
 const groups = [
   {
@@ -35,10 +35,7 @@ export function MarketingFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Link href="/" className="flex items-center gap-2.5">
-              <span className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                <Sparkles className="size-4" />
-              </span>
-              <span className="text-sm font-semibold tracking-tight text-foreground">ToolBox</span>
+              <Wordmark size="md" />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               The vendor-first procurement platform that turns RFQs into winning quotes in seconds.
@@ -65,7 +62,7 @@ export function MarketingFooter() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground sm:text-left">
-          Western Premium · Toolbox.africa · {new Date().getFullYear()}
+          wekbench · wekbench.com · {new Date().getFullYear()}
         </div>
       </div>
     </footer>
