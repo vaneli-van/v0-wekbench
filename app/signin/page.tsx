@@ -122,8 +122,8 @@ export default function SignInPage() {
             {/* Footer link */}
             <p className="mt-8 text-center text-sm text-muted-foreground">
               New to wekbench?{" "}
-              <Link href="#" className="font-medium text-foreground underline-offset-4 hover:underline">
-                Request access
+              <Link href="/signup" className="font-medium text-foreground underline-offset-4 hover:underline">
+                Create an account
               </Link>
             </p>
           </div>

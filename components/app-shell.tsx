@@ -7,7 +7,7 @@ import { Topbar } from "@/components/topbar"
 
 // Routes that render WITHOUT the app sidebar/topbar chrome (public marketing,
 // auth, onboarding, and the public tracking page).
-const chromelessRoutes = ["/", "/signin", "/onboarding"]
+const chromelessRoutes = ["/", "/signin", "/signup", "/onboarding"]
 const chromelessPrefixes = ["/track"]
 
 export function AppShell({ children }: { children: React.ReactNode }) {

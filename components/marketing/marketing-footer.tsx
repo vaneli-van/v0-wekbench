@@ -23,7 +23,7 @@ const groups = [
     title: "Account",
     links: [
       { name: "Sign in", href: "/signin" },
-      { name: "Get started", href: "/onboarding" },
+      { name: "Get started", href: "/signup" },
     ],
   },
 ]
