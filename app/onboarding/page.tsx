@@ -44,14 +44,31 @@ export default function OnboardingPage() {
   const [company, setCompany] = useState("")
   const [country, setCountry] = useState("GH")
 
+  const persist = () => {
+    try {
+      localStorage.setItem(
+        "wekbench:onboarding",
+        JSON.stringify({ role: role ?? "vendor", company: company.trim(), country }),
+      )
+      localStorage.setItem("wekbench:welcome", "pending")
+    } catch {
+      /* ignore storage errors */
+    }
+  }
+
   const next = () => {
     if (step >= STEPS.length) {
+      persist()
       setDone(true)
     } else {
       setStep((s) => s + 1)
     }
   }
   const back = () => setStep((s) => Math.max(1, s - 1))
+  const skip = () => {
+    persist()
+    router.push("/dashboard")
+  }
 
   if (done) {
     return <Confirmation role={role ?? "vendor"} onDashboard={() => router.push("/dashboard")} />
@@ -103,7 +120,7 @@ export default function OnboardingPage() {
         </ol>
 
         <button
-          onClick={() => router.push("/dashboard")}
+          onClick={skip}
           className="shrink-0 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           Skip for now

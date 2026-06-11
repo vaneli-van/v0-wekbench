@@ -19,6 +19,7 @@ import { StatusBadge } from "@/components/status-badge"
 import { FxRatesCard } from "@/components/fx-rates-card"
 import { ShippingRatesCard } from "@/components/shipping-rates-card"
 import { QuotesPerWeekChart } from "@/components/quotes-per-week-chart"
+import { DashboardWelcome } from "@/components/dashboard-welcome"
 import { rfqs, buyers } from "@/lib/data"
 import { cn } from "@/lib/utils"
 
@@ -108,6 +109,9 @@ function DeltaIcon({ dir }: { dir: "up" | "down" | "flat" }) {
 export default function DashboardPage() {
   return (
     <div className="mx-auto max-w-[1400px] px-4 pb-12 pt-4 md:px-8">
+      {/* First sign-in welcome (shows once after onboarding) */}
+      <DashboardWelcome />
+
       {/* Row 1: greeting + what's new */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
