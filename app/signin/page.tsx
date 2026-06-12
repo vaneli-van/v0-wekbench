@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Eye, EyeOff } from "lucide-react"
+import { Eye, EyeOff, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -137,8 +137,53 @@ export default function SignInPage() {
 
       {/* Right column: decorative dashboard preview */}
       <div className="relative hidden overflow-hidden border-l border-border bg-muted/40 lg:block">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 via-transparent to-muted/50" />
-        <DashboardPreview />
+        <SignInPanel />
+      </div>
+    </div>
+  )
+}
+
+const SIGNIN_VALUE_PROPS = [
+  "Track pending quotes and order deadlines in real-time",
+  "Capture inbound RFQs, PDFs, Excel — all in one inbox",
+  "Close more deals with faster response times",
+]
+
+function SignInPanel() {
+  return (
+    <div className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 via-transparent to-muted/50" />
+      <div className="relative flex h-full flex-col justify-center px-16">
+        <p className="text-xs font-medium uppercase tracking-wider text-primary">
+          Back to work
+        </p>
+        <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight tracking-tight text-foreground text-balance">
+          Close deals faster with wekbench
+        </h2>
+        <ul className="mt-8 flex flex-col gap-4">
+          {SIGNIN_VALUE_PROPS.map((prop) => (
+            <li key={prop} className="flex items-start gap-3">
+              <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/12 text-primary">
+                <Check className="size-3.5" />
+              </span>
+              <span className="text-sm leading-relaxed text-foreground">{prop}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10 flex items-center gap-3 rounded-lg border border-border bg-card/60 p-4">
+          <div className="flex -space-x-2">
+            {["bg-primary/80", "bg-foreground/70", "bg-primary/50"].map((tone, i) => (
+              <span
+                key={i}
+                className={cn("size-7 rounded-full ring-2 ring-card", tone)}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Trusted by procurement teams closing deals across Africa and beyond.
+          </p>
+        </div>
       </div>
     </div>
   )
