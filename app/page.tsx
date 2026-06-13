@@ -1,5 +1,6 @@
 import { MarketingNav } from "@/components/marketing/marketing-nav"
 import { Hero } from "@/components/marketing/hero"
+import { RotatingTeam } from "@/components/marketing/rotating-team"
 import { LogoStrip } from "@/components/marketing/logo-strip"
 import { ProcurementNetwork } from "@/components/marketing/procurement-network"
 import { HowItWorks } from "@/components/marketing/how-it-works"
@@ -14,6 +15,7 @@ export default function MarketingPage() {
       <MarketingNav />
       <main>
         <Hero />
+        <RotatingTeam />
         <LogoStrip />
         <ProcurementNetwork />
         <HowItWorks />
