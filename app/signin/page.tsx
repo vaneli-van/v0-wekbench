@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Eye, EyeOff } from "lucide-react"
+import { Eye, EyeOff, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -94,7 +94,7 @@ export default function SignInPage() {
                 </div>
                 <div className="flex justify-end">
                   <Link
-                    href="#"
+                    href="/forgot-password"
                     className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                   >
                     Forgot password?
@@ -137,8 +137,67 @@ export default function SignInPage() {
 
       {/* Right column: decorative dashboard preview */}
       <div className="relative hidden overflow-hidden border-l border-border bg-muted/40 lg:block">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 via-transparent to-muted/50" />
-        <DashboardPreview />
+        <SignInPanel />
+      </div>
+    </div>
+  )
+}
+
+const SIGNIN_VALUE_PROPS = [
+  "Track pending quotes and order deadlines in real-time",
+  "Capture inbound RFQs, PDFs, Excel — all in one inbox",
+  "Close more deals with faster response times",
+]
+
+function SignInPanel() {
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-gradient-to-br from-secondary/20 via-muted/10 to-muted/30">
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute right-0 top-0 size-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 size-80 rounded-full bg-primary/[0.03] blur-3xl" />
+      </div>
+      <div className="relative flex h-full flex-col justify-between px-12 py-16">
+        {/* Top spacer */}
+        <div />
+        
+        {/* Center content */}
+        <div className="flex flex-col gap-8">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-widest text-primary">
+              Back to work
+            </p>
+            <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-foreground text-balance max-w-md">
+              Close deals faster with wekbench
+            </h2>
+          </div>
+          
+          <ul className="flex flex-col gap-4">
+            {SIGNIN_VALUE_PROPS.map((prop) => (
+              <li key={prop} className="flex items-start gap-3 max-w-sm">
+                <span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  <Check className="size-3.5 stroke-[3]" />
+                </span>
+                <span className="text-sm leading-relaxed text-foreground/90">{prop}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {/* Bottom social proof */}
+        <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/40 backdrop-blur-sm p-4 max-w-sm">
+          <div className="flex -space-x-2">
+            {["bg-primary/90", "bg-foreground/60", "bg-primary/60"].map((tone, i) => (
+              <span
+                key={i}
+                className={cn("size-8 rounded-full ring-2 ring-background/80", tone)}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Trusted by procurement teams across Africa and beyond.
+          </p>
+        </div>
       </div>
     </div>
   )
